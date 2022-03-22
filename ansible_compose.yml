@@ -1,0 +1,15 @@
+---
+- hosts: webserver1
+  # become: true
+
+  tasks:
+    - name:
+      copy: 
+        src: files/docker-compose.yml
+        dest: /tmp/docker-compose.yml
+    - name: Run docker compose file
+      docker_compose:
+        project_src: /tmp/
+        files:
+          - docker-compose.yml
+        state: present
